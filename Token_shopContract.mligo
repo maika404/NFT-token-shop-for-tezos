@@ -1,5 +1,5 @@
 //defining contract types 
-type token_supply = { current_stock : nat ; token_address : address ; token_price : tez }
+type token_supply = { current_stock : nat ; token_address : address ; token_max_price : tez }
 type token_shop_storage = (nat, token_supply) map
 type return = operation list * token_shop_storage
 
@@ -32,8 +32,10 @@ let main (token_kind_index, token_shop_storage : nat * token_shop_storage) : ret
     | Some k -> k
     | None -> (failwith "Unknown kind of token" : token_supply)
   in
+
+  let current_purchase_price : tez = token_kind.token_max_price / token_kind.current_stock ;
  
-  let () = if Tezos.amount <> token_kind.token_price then
+  let () = if Tezos.amount <> token_kind.current_purchase_price then
     failwith "Sorry, the token you are trying to purchase has a different price"
   in
  
