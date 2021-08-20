@@ -1,2 +1,4 @@
 # NFT-token-shop-for-tezos
-A smart contract that allows the buy and sale of nfts 
+A smart contract that allows the buy and sale of nfts
+This smart contract is written in CamelLigo 
+It alows the owner of the smartcontracts to sell and enjoy nft's in a marketplace environment
