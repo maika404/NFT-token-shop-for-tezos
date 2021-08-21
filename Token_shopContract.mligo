@@ -40,10 +40,7 @@ let main (token_kind_index, token_shop_storage : nat * token_shop_storage) : ret
   let () = if token_kind.current_stock = 0n then
     failwith "Sorry, the token you are trying to purchase is out of stock"
   in
-  
-  let timenow : timestamp = Tezos.now
-  in
- 
+   
 //update the storage from user transactions
   let token_shop_storage = Map.update
     token_kind_index
