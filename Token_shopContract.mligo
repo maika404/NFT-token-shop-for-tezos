@@ -12,6 +12,8 @@ type transfer_destination =
   token_id : token_id;
   amount : nat;
 }
+
+//declaring types
  
 type transfer =
 [@layout:comb]
@@ -33,6 +35,7 @@ let main (token_kind_index, token_shop_storage : nat * token_shop_storage) : ret
     | None -> (failwith "Unknown kind of token" : token_supply)
   in
 
+//get the current price 
   let current_purchase_price : tez = token_kind.token_max_price / token_kind.current_stock ;
  
   let () = if Tezos.amount <> token_kind.current_purchase_price then
@@ -42,7 +45,7 @@ let main (token_kind_index, token_shop_storage : nat * token_shop_storage) : ret
   let () = if token_kind.current_stock = 0n then
     failwith "Sorry, the token you are trying to purchase is out of stock"
   in
-  
+  //get the current timestamp
   let timenow : timestamp = Tezos.now
   in
  
@@ -63,6 +66,7 @@ let main (token_kind_index, token_shop_storage : nat * token_shop_storage) : ret
   } 
   in
 
+//declare entrypoint
 let entrypoint : transfer list contract = 
     match ( Tezos.get_entrypoint_opt "%transfer" token_kind.token_address : transfer list contract option ) with
     | None -> ( failwith "Invalid external token contract" : transfer list contract )
